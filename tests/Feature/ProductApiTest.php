@@ -24,7 +24,7 @@ public function test_can_create_product_via_api(): void
         'tax_cost' => 5.00,
         'manufacturing_cost' => 10.00,
     ];
-$response = $this->postJson('/products', $payload);
+$response = $this->postJson('/api/products', $payload);
 
     $response->assertStatus(201)
              ->assertJsonStructure([
@@ -52,7 +52,7 @@ public function test_can_update_product(): void
         'tax_cost' => 2.00,
         'manufacturing_cost' => 5.00,
     ]);
-    $response = $this->putJson("/products/{$product->id}", 
+    $response = $this->putJson("/api/products/{$product->id}", 
     ['name' => 'New Name',
         'description' => 'New Description',
         'price' => 60.00,
@@ -68,7 +68,7 @@ public function test_can_update_product(): void
 public function test_can_delete_product(): void
 {
     $product = Product::factory()->create();
-    $response = $this->deleteJson("/products/{$product->id}");
+    $response = $this->deleteJson("/api/products/{$product->id}");
 
     $response->assertStatus(200);
     $this->assertDatabaseMissing('products', ['id' => $product->id]);
@@ -78,7 +78,7 @@ public function test_can_display_product_list(): void
 {
     Product::factory()->count(10)->create();
 
-    $response = $this->getJson('/products');
+    $response = $this->getJson('/api/products');
 
     $response->assertStatus(200)
              ->assertJsonStructure([
@@ -109,7 +109,7 @@ public function test_can_display_product_list(): void
         ->hasPrices(2)
         ->create();
 
-    $response = $this->getJson("/products/{$product->id}");
+    $response = $this->getJson("/api/products/{$product->id}");
 
     $response->assertStatus(200)
              ->assertJsonStructure([

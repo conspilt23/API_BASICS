@@ -19,7 +19,7 @@ class ProductPriceApiTest extends TestCase
         $product = Product::factory()->create();
         ProductPrice::factory()->count(3)->for($product)->create();
 
-        $response = $this->getJson("/products/{$product->id}/prices");
+        $response = $this->getJson("/api/products/{$product->id}/prices");
 
         $response->assertStatus(200)
             ->assertJsonStructure([
@@ -47,7 +47,7 @@ class ProductPriceApiTest extends TestCase
             'price' => 49.99
         ];
 
-        $response = $this->postJson("/products/{$product->id}/prices", $payload);
+        $response = $this->postJson("/api/products/{$product->id}/prices", $payload);
 
         $response->assertStatus(201)
             ->assertJsonStructure([
@@ -88,7 +88,7 @@ class ProductPriceApiTest extends TestCase
             'price' => 75.50
         ];
 
-        $response = $this->postJson("/products/{$product->id}/prices", $payload);
+        $response = $this->postJson("/api/products/{$product->id}/prices", $payload);
 
         $response->assertStatus(200)
             ->assertJson([

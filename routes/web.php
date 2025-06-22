@@ -12,8 +12,3 @@ Route::get('/', function () {
 // Products API Routes
 
 Route::apiResource('products', ProductController::class);
-
-// Product Prices API Routes
-
-Route::get('products/{product}/prices', [ProductPriceController::class, 'index'])->name('products.prices.index');
-Route::post('products/{product}/prices', [ProductPriceController::class, 'store'])->name('products.prices.store');
