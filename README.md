@@ -96,6 +96,7 @@ The API endpoints are prefixed with /api
 Example base URL for local development: http://your-app.test/api
 
 ## Endpoints Overview
+<code>
 GET /api/products
 Retrieves a paginated list of products.
 
@@ -116,6 +117,7 @@ Lists all prices for a given product.
 
 POST /api/products/{product_id}/prices
 Creates or updates a price for a product in a given currency.
+</code>
 
 ## Authentication
 This API does not require authentication for testing purposes.
@@ -133,7 +135,7 @@ No need to add CSRF tokens since this is a stateless API.
 
 ## Example JSON Payloads
 ## Create Product
-
+<code>
 {
   "name": "Example Product",
   "description": "Description here",
@@ -142,12 +144,15 @@ No need to add CSRF tokens since this is a stateless API.
   "tax_cost": 5.00,
   "manufacturing_cost": 10.00
 }
-## Create Product Price
+</code>
 
+## Create Product Price
+<code>
 {
   "currency_id": 1,
   "price": 49.99
 }
+</code>
 
 ## Further Documentation
 For more detailed docs, refer to:
