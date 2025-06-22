@@ -1,0 +1,296 @@
+{
+	"info": {
+		"_postman_id": "88239847-7b3e-49bd-b544-9d5701626ca5",
+		"name": "REST API basics: CRUD, test & variable",
+		"description": "# 🛒 Laravel Product API\n\nA RESTful API built with Laravel 12 for managing products with multi-currency pricing.\n\n---\n\n## 📦 Features\n\n- Full CRUD operations for products\n    \n- Assign multiple prices per product (by currency)\n    \n- Resourceful Laravel API structure (Controllers, Resources, Requests)\n    \n- Built-in unit & feature testing\n    \n- Postman collection included\n    \n- No authentication required (easy to extend)\n    \n\n---\n\n## 🛠️ Technologies Used\n\n- Laravel 12.x\n    \n- PHP 8.2+\n    \n- MySQL\n    \n- PHPUnit\n    \n- Postman\n    \n- Faker for fake test data\n    \n\n---\n\n## 🚀 Installation\n\n1. **Clone the repo:**\n    \n\n`git clone` [<code>https://github.com/conspilt23/API_BASICS.git</code>](https://github.com/your-username/your-repo.git)\n\n`cd your-repo`\n\nInstall dependencies:\n\n`composer install`\n\nCreate your .env file:\n\n`cp .env.example .env php artisan key:generate`\n\nConfigure the database (MySQL):\n\n`touch database/database.mysql`\n\nUpdate .env:  \n`DB_CONNECTION=mysql`\n\n`DB_DATABASE=/absolute/path/to/database/database.MySQL`\n\nRun migrations and seeders:\n\n`php artisan migrate --seed`\n\nServe the application:\n\n`php artisan serve`  \n✅ Running Tests\n\n`php artisan test`\n\nIncludes tests for:\n\n- Product CRUD operations\n    \n- Creating and updating product prices per currency\n    \n- 📬 API Documentation (Postman)\n    \n\n📥 Import the Postman collection:  \nOpen Postman.\n\nClick Import → File.\n\nSelect:\n\npostman/ProductAPI.postman_collection.json\n\n🔗 Endpoints included:  \n`GET /api/products`\n\n`GET /api/products/{id}`\n\n`POST /api/products`\n\n`PUT /api/products/{id}`\n\n`DELETE /api/products/{id}`\n\n`GET /api/products/{product}/prices`\n\n`POST /api/products/{product}/prices`\n\n🌐 Postman base URL:\n\n[http://127.0.0.1:8000](http://127.0.0.1:8000)  \nNo token is required. This API is public for testing purposes.\n\n## 👨‍💻 Author\n\nDeveloped by Harvey\n\n🔗 GitHub: [@conspilt23](https://github.com/your-username)\n\n---\n\n## 📝 License\n\nThis project is open-source and free to use under the [MIT license](https://null).",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "46101420",
+		"_collection_link": "https://harvey-525940.postman.co/workspace/Harvey's-Workspace~04cb85d2-db63-4238-896e-b8f82b284872/collection/46101420-88239847-7b3e-49bd-b544-9d5701626ca5?action=share&source=collection_link&creator=46101420"
+	},
+	"item": [
+		{
+			"name": "Create Products",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Example Product 1\",\r\n  \"description\": \"This is an example product 4 description.\",\r\n  \"price\": 700.03,\r\n  \"currency_id\": 6,\r\n  \"tax_cost\": 1.7,\r\n  \"manufacturing_cost\": 23.0\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/products",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"products"
+					]
+				},
+				"description": "This is a publishing API that creates products through a POST request in JSON format.EndFragment"
+			},
+			"response": []
+		},
+		{
+			"name": "Show Single Product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Example Product\",\r\n  \"description\": \"This is an example product description.\",\r\n  \"price\": 99.99,\r\n  \"currency_id\": 1,\r\n  \"tax_cost\": 5.0,\r\n  \"manufacturing_cost\": 10.0\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/products/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"products",
+						"1"
+					]
+				},
+				"description": "This is an API that sends a GET request to view a specific product and all its features.EndFragment"
+			},
+			"response": []
+		},
+		{
+			"name": "Show Products list",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Example Product\",\r\n  \"description\": \"This is an example product description.\",\r\n  \"price\": 99.99,\r\n  \"currency_id\": 1,\r\n  \"tax_cost\": 5.0,\r\n  \"manufacturing_cost\": 10.0\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/products",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"products"
+					]
+				},
+				"description": "This is a publishing API that creates products through a POST request in JSON format.EndFragment"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful PUT request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Example new Product 3 Updated\",\n  \"description\": \"This is an example product 3 description updated.\",\n  \"price\": 520.03,\n  \"currency_id\": 5,\n  \"tax_cost\": 1.7,\n  \"manufacturing_cost\": 22.0\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/products/3",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"products",
+						"3"
+					]
+				},
+				"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful DELETE request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/products/4",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"products",
+						"4"
+					]
+				},
+				"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Create Product Price or Update If Exists",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"currency_id\": 2,\r\n  \"price\": 24.23\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/products/1/prices",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"products",
+						"1",
+						"prices"
+					]
+				},
+				"description": "## Add Product Price\n\nThis endpoint allows you to add a new price for a specific product identified by its ID. By sending a POST request to `{{base_url}}/api/products/{product_id}/prices`, you can set the price and the currency for the product. StartFragmentIt will only be updated if the currency_id already exists for that product, otherwise, it will be interpreted as the introduction of another product of the same type.EndFragment\n\n### Request\n\n- **Method:** POST\n    \n- **Endpoint:** `{{base_url}}/api/products/{product_id}/prices`\n    \n\n#### Request Body\n\nThe request body must be in JSON format and include the following parameters:\n\n- **currency_id** (integer, required): The ID of the currency in which the price is specified.\n    \n- **price** (decimal, required): The price of the product.\n    \n\n**Example Request Body:**\n\n``` json\n{\n  \"currency_id\": 1,\n  \"price\": 49.99\n}\n\n ```\n\n### Headers\n\nEnsure to include the following headers in your request:\n\n- **Content-Type:** application/json\n    \n\n### Response\n\nUpon a successful request, the server will respond with a `201 Created` status code and a JSON object containing the following structure:\n\n- **message** (string): A message indicating the result of the request (can be empty).\n    \n- **data** (object): An object containing the details of the newly created price entry:\n    \n    - **id** (integer): The unique identifier for the price entry.\n        \n    - **product_id** (integer): The ID of the product associated with this price.\n        \n    - **price** (decimal): The price that was set for the product.\n        \n    - **currency** (object): An object representing the currency details:\n        \n        - **id** (integer): The ID of the currency.\n            \n        - **name** (string): The name of the currency.\n            \n        - **symbol** (string): The symbol of the currency.\n            \n        - **exchange_rate** (decimal): The exchange rate of the currency.\n            \n        - **created_at** (string): Timestamp of when the currency was created.\n            \n        - **updated_at** (string): Timestamp of the last update to the currency.\n            \n    - **created_at** (string): Timestamp of when the price was created.\n        \n    - **updated_at** (string): Timestamp of the last update to the price.\n        \n\n**Example Response:**\n\n``` json\n{\n  \"message\": \"\",\n  \"data\": {\n    \"id\": 0,\n    \"product_id\": 0,\n    \"price\": 0,\n    \"currency\": {\n      \"id\": 0,\n      \"name\": \"\",\n      \"symbol\": \"\",\n      \"exchange_rate\": 0,\n      \"created_at\": \"\",\n      \"updated_at\": \"\"\n    },\n    \"created_at\": \"\",\n    \"updated_at\": \"\"\n  }\n}\n\n ```\n\nThis endpoint is essential for managing product pricing in different currencies, allowing for flexibility in pricing strategies."
+			},
+			"response": []
+		},
+		{
+			"name": "Show Price List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"description": "## Get Product Prices\n\nThis endpoint retrieves the pricing information for a specific product identified by its ID. In this case, the request is made for the product with ID `1`.\n\n### Request Parameters\n\nThe request does not require any parameters in the URL, but it expects a JSON payload in the body with the following keys:\n\n- **name** (string): The name of the product.\n    \n- **description** (string): A brief description of the product.\n    \n- **price** (number): The price of the product.\n    \n- **currency_id** (integer): The ID of the currency in which the price is denominated.\n    \n- **tax_cost** (number): The tax cost associated with the product.\n    \n- **manufacturing_cost** (number): The manufacturing cost of the product.\n    \n\n### Response\n\nUpon a successful request, the server responds with a `200 OK` status and a JSON object containing the pricing data for the specified product. The structure of the response is as follows:\n\n- **data** (array): An array containing pricing information for the product, with the following fields:\n    \n    - **id** (integer): The unique identifier for the price entry.\n        \n    - **product_id** (integer): The ID of the product.\n        \n    - **price** (number): The price of the product.\n        \n    - **currency** (object): An object containing details about the currency, including:\n        \n        - **id** (integer): The unique identifier for the currency.\n            \n        - **name** (string): The name of the currency.\n            \n        - **symbol** (string): The symbol used for the currency.\n            \n        - **exchange_rate** (number): The exchange rate of the currency.\n            \n        - **created_at** (string): The timestamp when the currency was created.\n            \n        - **updated_at** (string): The timestamp when the currency was last updated.\n            \n    - **created_at** (string): The timestamp when the price entry was created.\n        \n    - **updated_at** (string): The timestamp when the price entry was last updated.\n        \n\n### Notes\n\n- Ensure that the product ID in the URL corresponds to an existing product to receive valid pricing information.\n    \n- The response will include details about the currency used for the product price, which can be useful for currency conversion or display purposes."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}

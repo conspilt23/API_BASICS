@@ -59,3 +59,106 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+# API Documentation
+
+This folder contains API documentation and Postman collections for this Laravel project.
+
+---
+
+## Running Tests
+
+To run all feature tests included in this project, use the following command:
+
+<code>php artisan test</code>
+
+This will run all automated tests to verify the correctness of the API.
+
+## Postman Collection
+You can use the Postman collection included here to quickly test and explore the API.
+
+File path: /docs/postman/product-api.postman_collection.json
+
+## Import to Postman:
+
+Open Postman
+
+Click on Import
+
+Select File and choose this JSON file
+
+The collection will appear in your workspace
+
+## API Base URL
+The API endpoints are prefixed with /api
+
+Example base URL for local development: http://your-app.test/api
+
+## Endpoints Overview
+GET /api/products
+Retrieves a paginated list of products.
+
+GET /api/products/{product_id}
+Retrieves a single product by ID.
+
+POST /api/products
+Creates a new product. Requires JSON payload.
+
+PUT /api/products/{product_id}
+Updates an existing product.
+
+DELETE /api/products/{product_id}
+Deletes a product.
+
+GET /api/products/{product_id}/prices
+Lists all prices for a given product.
+
+POST /api/products/{product_id}/prices
+Creates or updates a price for a product in a given currency.
+
+## Authentication
+This API does not require authentication for testing purposes.
+
+If you add auth later, include tokens or credentials accordingly.
+
+## Using the API with Postman
+Ensure the base URL is set correctly (e.g., http://your-app.test/api).
+
+Use the pre-made requests in the imported Postman collection.
+
+For POST and PUT requests, use JSON body as specified in each request.
+
+No need to add CSRF tokens since this is a stateless API.
+
+## Example JSON Payloads
+## Create Product
+
+{
+  "name": "Example Product",
+  "description": "Description here",
+  "price": 100.00,
+  "currency_id": 1,
+  "tax_cost": 5.00,
+  "manufacturing_cost": 10.00
+}
+## Create Product Price
+
+{
+  "currency_id": 1,
+  "price": 49.99
+}
+
+## Further Documentation
+For more detailed docs, refer to:
+
+Laravel official docs: https://laravel.com/docs
+
+API resource classes and controllers in /app/Http/Controllers/Api
+
+## Postman environment variables and tests can be customized as needed.
+
+Contact & Support
+If you find bugs or want to contribute, please open an issue or PR in the project repository.
+
+Thank you for using this Laravel API project!
